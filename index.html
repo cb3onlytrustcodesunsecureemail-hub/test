@@ -3,19 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <title>PRODYSGROUP</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="light">
     <div class="topbar">
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <nav class="menu-overlay" id="menuOverlay">
+      <button class="menu-close" id="menuClose">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <a href="/music.html" class="menu-item">Music</a>
       <a
         href="https://credits.muso.ai/profile/8cce5394-0664-44aa-9a3e-cd6a9866ed95"
-        class="top-left"
-        >CREDITS</a
+        class="menu-item"
+        >Credits</a
       >
-      <div class="center-title">HOME</div>
-      <a href="music.html" class="top-right">MUSIC</a>
-    </div>
+      <a href="sms:+19299495412" class="menu-item">Mixing</a>
+      <a href="https://www.beatstars.com/prodysgroup" class="menu-item"
+        >Beats</a
+      >
+    </nav>
 
     <div class="artist-container">
       <div class="artist-stack">
@@ -49,6 +66,33 @@
         >
         <a href="#" class="artist-name">THIRTEENDEGREES</a>
         <div class="produced-for">AND MORE</div>
+      </div>
+      <br />
+      <div class="social-icons">
+        <a
+          href="https://www.instagram.com/prodysgroup/"
+          target="_blank"
+          class="social-icon"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://x.com/prodysgroup" target="_blank" class="social-icon">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a
+          href="https://open.spotify.com/artist/117JIFH7qKIH6XFGefJy2j"
+          target="_blank"
+          class="social-icon"
+        >
+          <i class="fab fa-spotify"></i>
+        </a>
+        <a
+          href="https://youtube.com/@prodysgroup"
+          target="_blank"
+          class="social-icon"
+        >
+          <i class="fab fa-youtube"></i>
+        </a>
       </div>
     </div>
 

@@ -2,16 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>MUSIC</title>
+    <title>PRODYSGROUP</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="light">
     <div class="topbar">
-      <a href="index.html" class="top-left">HOME</a>
-      <div class="center-title">MUSIC</div>
-      <a href="archive.html" class="top-right">ARCHIVE</a>
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
+
+    <nav class="menu-overlay" id="menuOverlay">
+      <button class="menu-close" id="menuClose">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <a href="/" class="menu-item">Home</a>
+      <a
+        href="https://credits.muso.ai/profile/8cce5394-0664-44aa-9a3e-cd6a9866ed95"
+        class="menu-item"
+        >Credits</a
+      >
+      <a href="sms:+19299495412" class="menu-item">Mixing</a>
+      <a href="https://www.beatstars.com/prodysgroup" class="menu-item"
+        >Beats</a
+      >
+    </nav>
 
     <div class="albums-container">
       <a href="https://lnk.to/usb-a" class="album-link">
