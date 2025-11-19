@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>PRODYSGROUP</title>
+    <title>MUSIC</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -34,24 +34,30 @@
     </nav>
 
     <div class="albums-container">
-      <a href="https://lnk.to/usb-a" class="album-link">
-        <img
-          src="https://pub-6225413471cd4ec58de33090df3e74c3.r2.dev/USB%20A%20COVER%20V2.png"
-          alt="USB A"
-        />
-      </a>
+<div class="album-countdown-wrapper">
+  <div class="single-out-text">SINGLE OUT</div>
+  <div id="countdown"></div>
+
+  <a href="#" class="album-link upcoming">
+    <img
+      src="https://pub-6225413471cd4ec58de33090df3e74c3.r2.dev/image%20(2).png"
+      alt="I Need You"
+    />
+  </a>
+</div>
+
       <a href="https://lnk.to/cbmusic" class="album-link">
         <img
           src="https://pub-6225413471cd4ec58de33090df3e74c3.r2.dev/IMG_0557.JPG"
           alt="CBMUSIC"
         />
       </a>
-      <!-- <a href="#" class="album-link">
+      <a href="https://lnk.to/usb-a" class="album-link">
         <img
-          src="https://pub-6225413471cd4ec58de33090df3e74c3.r2.dev/image%20(2).png"
-          alt="I Need You"
+          src="https://pub-6225413471cd4ec58de33090df3e74c3.r2.dev/USB%20A%20COVER%20V2.png"
+          alt="USB A"
         />
-      </a> -->
+      </a>
     </div>
   </body>
 </html>
@@ -456,6 +462,33 @@ body.light #vault-lock {
   color: black;
   transform: scale(1.12);
 }
+
+.album-countdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.single-out-text {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+  margin-bottom: 4px;
+}
+
+#countdown {
+  font-size: 12px;
+  opacity: 0.55;
+  margin-bottom: 10px;
+}
+
+/* Gray out ONLY I Need You */
+.album-link.upcoming img {
+  filter: grayscale(100%) brightness(65%);
+  opacity: 0.6;
+}
+
 </style>
 
 <script>
@@ -561,4 +594,27 @@ menuClose.addEventListener("click", () => {
   menuOverlay.classList.remove("open");
   menuToggle.classList.remove("hidden"); // show hamburger again
 });
+
+  const targetDate = new Date("December 5, 2025 00:00:00 EST");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").textContent = "OUT NOW";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").textContent =
+      `${days}D ${hours}H ${minutes}M ${seconds}S`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
