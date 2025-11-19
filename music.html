@@ -34,18 +34,20 @@
     </nav>
 
     <div class="albums-container">
-<div class="album-countdown-wrapper">
-  <div class="single-out-text">SINGLE OUT</div>
-  <div id="countdown"></div>
-
+<div class="album-overlay-wrapper">
   <a href="#" class="album-link upcoming">
     <img
       src="https://pub-6225413471cd4ec58de33090df3e74c3.r2.dev/image%20(2).png"
       alt="I Need You"
     />
+
+    <div class="album-overlay">
+      <i class="fas fa-lock lock-icon"></i>
+      <div class="single-out-text">SINGLE OUT</div>
+      <div id="countdown"></div>
+    </div>
   </a>
 </div>
-
       <a href="https://lnk.to/cbmusic" class="album-link">
         <img
           src="https://pub-6225413471cd4ec58de33090df3e74c3.r2.dev/IMG_0557.JPG"
@@ -463,30 +465,50 @@ body.light #vault-lock {
   transform: scale(1.12);
 }
 
-.album-countdown-wrapper {
+.album-overlay-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.album-link.upcoming {
+  position: relative;
+  display: inline-block;
+}
+
+/* Gray out & dim ONLY "I Need You" */
+.album-link.upcoming img {
+  filter: grayscale(100%) brightness(60%);
+  opacity: 0.55;
+}
+
+/* Overlay text centered on top */
+.album-overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 12px;
+  pointer-events: none; /* Don't block clicks */
+  text-align: center;
+}
+
+.lock-icon {
+  font-size: 26px;
+  opacity: 0.75;
+  margin-bottom: 8px;
 }
 
 .single-out-text {
   font-size: 13px;
   letter-spacing: 0.06em;
-  opacity: 0.55;
+  opacity: 0.7;
   margin-bottom: 4px;
 }
 
 #countdown {
   font-size: 12px;
-  opacity: 0.55;
-  margin-bottom: 10px;
-}
-
-/* Gray out ONLY I Need You */
-.album-link.upcoming img {
-  filter: grayscale(100%) brightness(65%);
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
 </style>
@@ -601,8 +623,11 @@ menuClose.addEventListener("click", () => {
     const now = new Date();
     const diff = targetDate - now;
 
+    const cd = document.getElementById("countdown");
+    if (!cd) return;
+
     if (diff <= 0) {
-      document.getElementById("countdown").textContent = "OUT NOW";
+      cd.textContent = "OUT NOW";
       return;
     }
 
@@ -611,8 +636,7 @@ menuClose.addEventListener("click", () => {
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
-    document.getElementById("countdown").textContent =
-      `${days}D ${hours}H ${minutes}M ${seconds}S`;
+    cd.textContent = `${days}D ${hours}H ${minutes}M ${seconds}S`;
   }
 
   updateCountdown();
