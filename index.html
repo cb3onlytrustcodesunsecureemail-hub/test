@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>PRODYSGROUP</title>
+    <title>MUSIC</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -153,14 +153,14 @@
     font-size: 14px;
     cursor: pointer;
     text-decoration: none;
-    color: var(--fg-light); /* matches light mode */
+    color: var(--fg-light);
     transition: color 0.2s ease, transform 0.2s ease;
-    margin-left: 16px; /* space between hamburger and link */
+    margin-left: 16px;
   }
 
   .top-right:hover {
     color: black;
-    transform: scale(1.12); /* match social buttons hover */
+    transform: scale(1.12);
   }
 
   .center-title {
@@ -179,6 +179,8 @@
   }
 
   .artist-stack .produced-for {
+    pointer-events: none;
+    cursor: default;
     font-size: 12px;
     margin: 8px 0;
     opacity: 0.65;
@@ -220,6 +222,28 @@
     transform: scale(1.05);
     border-color: rgba(255, 255, 255, 0.3);
   }
+  .album-link.upcoming img:hover {
+    transform: none !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+    pointer-events: none;
+    cursor: default;
+  }
+  .menu-item.current {
+    color: black !important;
+    pointer-events: none;
+    cursor: default;
+    transform: none !important;
+  }
+
+  .menu-item.current:hover {
+    color: black !important;
+    transform: none !important;
+  }
+
+  .album-link.upcoming {
+    pointer-events: none;
+    cursor: default;
+  }
 
   .section-title {
     margin-top: var(--spacing-lg);
@@ -245,7 +269,6 @@
     filter: invert(0%);
   }
 
-  /* Collapsible section */
   .collapsible-header-feat {
     cursor: pointer;
     margin-top: 0px;
@@ -414,7 +437,6 @@
     transform: scale(1.12);
   }
 
-  /* MENU BUTTON (HAMBURGER) */
   .menu-toggle {
     background: none;
     border: none;
@@ -423,19 +445,17 @@
     cursor: pointer;
     opacity: 0.75;
     position: relative;
-    z-index: 11000; /* ABOVE EVERYTHING */
+    z-index: 11000;
   }
   .menu-toggle:hover {
     color: black;
     opacity: 1;
   }
 
-  /* HIDE WHEN MENU IS OPEN */
   .menu-toggle.hidden {
     display: none;
   }
 
-  /* FULLSCREEN OVERLAY */
   .menu-overlay {
     position: fixed;
     inset: 0;
@@ -455,7 +475,6 @@
     transform: translateY(0);
   }
 
-  /* LINKS */
   .menu-item {
     font-size: 18px;
     color: var(--fg-dim);
@@ -467,18 +486,17 @@
     transform: scale(1.05);
   }
 
-  /* CLOSE (X) BUTTON */
   .menu-close {
     position: absolute;
-    top: 48px; /* SAME AS YOUR TOPBAR PADDING */
-    left: 48px; /* SAME AS YOUR TOPBAR PADDING */
+    top: 48px;
+    left: 48px;
     background: none;
     border: none;
     color: var(--fg-dim);
     font-size: 30px;
     cursor: pointer;
     transition: color 0.25s ease;
-    z-index: 11001; /* ABOVE MENU */
+    z-index: 11001;
     transition: color 0.2s ease, transform 0.2s ease;
   }
   .menu-close:hover {
@@ -497,10 +515,55 @@
     transform: scale(1.12);
   }
 
+  .album-overlay-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .album-link.upcoming {
+    position: relative;
+    display: inline-block;
+  }
+
+  .album-link.upcoming img {
+    filter: grayscale(100%) brightness(130%);
+    opacity: 0.45;
+  }
+
+  .album-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    text-align: center;
+  }
+
+  .lock-icon {
+    font-size: 26px;
+    opacity: 0.75;
+    margin-bottom: 8px;
+  }
+
+  .single-out-text {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+
+  #countdown {
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
   .menu-item.current {
     color: black !important;
+    pointer-events: none;
     cursor: default;
-    transform: none !important; /* kills hover grow */
+    transform: none !important;
   }
 
   .menu-item.current:hover {
@@ -517,10 +580,9 @@
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    osc.type = "triangle"; // clean + modern
-    osc.frequency.setValueAtTime(520, ctx.currentTime); // bright but not squeaky
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(520, ctx.currentTime);
 
-    // Very fast envelope — soft digital blip
     gain.gain.setValueAtTime(0.25, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
 
@@ -585,7 +647,7 @@
     vaultSubmit.addEventListener("click", () => {
       if (vaultPassword.value.trim().toUpperCase() === "PASSWORD") {
         vaultLock.style.display = "none";
-        clickBlip(); // nice UI feedback
+        clickBlip();
       } else {
         vaultError.style.opacity = 1;
         clickBlip();
@@ -605,11 +667,36 @@
 
   menuToggle.addEventListener("click", () => {
     menuOverlay.classList.add("open");
-    menuToggle.classList.add("hidden"); // hide hamburger
+    menuToggle.classList.add("hidden");
   });
 
   menuClose.addEventListener("click", () => {
     menuOverlay.classList.remove("open");
-    menuToggle.classList.remove("hidden"); // show hamburger again
+    menuToggle.classList.remove("hidden");
   });
+
+  const targetDate = new Date("December 5, 2025 00:00:00 EST");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    const cd = document.getElementById("countdown");
+    if (!cd) return;
+
+    if (diff <= 0) {
+      cd.textContent = "OUT NOW";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    cd.textContent = `${days}D ${hours}H ${minutes}M ${seconds}S`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
